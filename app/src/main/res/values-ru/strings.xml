@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main">Главная</string>
+    <string name="settings">Настройки</string>
+    <string name="add_currency">Добавить валюту</string>
+    <string name="profile">Профиль</string>
+
+    <string name="add_new">Добавить новое</string>
+    <string name="rate_google_play">Оценить в Google Play</string>
+    <string name="share">Поделиться</string>
+    <string name="feed_and_supp">Обратная связь и поддержка</string>
+    <string name="policy">Политика конфиденциальности</string>
+    <string name="about">О программе</string>
+
+    <string name="title">Заголовок</string>
+    <string name="body">Текст</string>
+    <string name="close">Закрыть</string>
+
+    <string name="hi_user">Привет,</string>
+    <string name="please_login">Пожалуйста, войдите здесь</string>
+
+    <string name="theme">Тема</string>
+    <string name="language">Язык</string>
+    <string name="display_size">Размер экрана</string>
+    <string name="precision">Точность десятичных чисел</string>
+
+    <string name="sing_out">Выход выполнен</string>
+    <string name="log_out">ВЫЙТИ</string>
+    <string name="not_logged">Вы еще не вошли в систему!</string>
+    <string name="google_login">Войти через Google</string>
+    <string name="n_a">н/д</string>
+</resources>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "996742951296",
+    "project_id": "currencytracker-e0073",
+    "storage_bucket": "currencytracker-e0073.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996742951296:android:2bcb723e5da3d3c0efd165",
+        "android_client_info": {
+          "package_name": "com.tshahakurov.currencytracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996742951296-nhsrq4ctql85j2ooahi2k31a39l6ig6t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tshahakurov.currencytracker",
+            "certificate_hash": "50ca6fb54d5f801c2c39fa6f5059e0bdc5420f35"
+          }
+        },
+        {
+          "client_id": "996742951296-q1gc3ovvjgcr5gb681hjc1mh0aq8vedk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeUpwr1nRIHc5KD8Ct6hAyZC4Sa68R4FY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996742951296-q1gc3ovvjgcr5gb681hjc1mh0aq8vedk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
