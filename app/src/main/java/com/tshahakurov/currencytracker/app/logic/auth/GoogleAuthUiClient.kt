@@ -12,7 +12,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tshahakurov.currencytracker.R
-import com.tshahakurov.currencytracker.app.TAG
 import com.tshahakurov.currencytracker.data.model.UserData
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.tasks.await
@@ -30,7 +29,7 @@ class GoogleAuthUiClient(
             ).await()
         } catch(e: Exception) {
             e.printStackTrace()
-            Log.d(TAG, e.message ?: "error")
+//            Log.d(TAG, e.message ?: "error")
             if(e is CancellationException) throw e
             null
         }

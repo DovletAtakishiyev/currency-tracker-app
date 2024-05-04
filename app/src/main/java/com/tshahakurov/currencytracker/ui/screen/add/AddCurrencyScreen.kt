@@ -1,5 +1,6 @@
 package com.tshahakurov.currencytracker.ui.screen.add
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,8 +30,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.tshahakurov.currencytracker.R
 import com.tshahakurov.currencytracker.data.model.CustomCurrency
 import com.tshahakurov.currencytracker.data.model.UserData
 import com.tshahakurov.currencytracker.ui.navigation.AppBar
@@ -54,8 +58,10 @@ fun AddCurrencyScreen(
     onCurrencyRemoved: (CustomCurrency) -> Unit = {},
 ) {
     val currencyList by viewModel.currencyList.collectAsState()
-
     viewModel.getSavedRates()
+    viewModel.startObservingNetworkState()
+    val isConnected by viewModel.isNetworkConnected.collectAsState(initial = false)
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -64,10 +70,17 @@ fun AddCurrencyScreen(
         contentAlignment = Alignment.TopCenter
     ) {
         Column {
+            val message = stringResource(id = R.string.no_connection)
             AppBar(
                 screen = CurrencyScreens.AddCurrency,
                 onBackPressed = onBackPressed,
-                onUpdatedClicked = { viewModel.getLatestRates() }
+                onUpdatedClicked = {
+                    if (isConnected) {
+                        viewModel.getLatestRates()
+                    } else {
+                        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                    }
+                }
             )
             AddCurrencyScreenElements(user, currencyList, onCurrencyAdded, onCurrencyRemoved)
         }

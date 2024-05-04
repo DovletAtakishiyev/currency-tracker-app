@@ -38,7 +38,6 @@ import com.google.android.gms.auth.api.identity.Identity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tshahakurov.currencytracker.R
-import com.tshahakurov.currencytracker.app.TAG
 import com.tshahakurov.currencytracker.app.logic.auth.GoogleAuthUiClient
 import com.tshahakurov.currencytracker.data.model.UserData
 import com.tshahakurov.currencytracker.ui.navigation.AppBar
@@ -59,6 +58,9 @@ fun ProfileScreen(
     onRemoveUser: () -> Unit = {},
 ) {
     val state by viewModel.profileState.collectAsState()
+    val isConnected by viewModel.isNetworkConnected.collectAsState(initial = false)
+    val message = stringResource(id = R.string.no_connection)
+    viewModel.startObservingNetworkState()
     viewModel.checkLogin(user)
 
 //----------------------------------- Google -----------------------------------\\
@@ -80,7 +82,6 @@ fun ProfileScreen(
                     val signInResult = googleAuthUiClient.signInWithIntent(
                         intent = result.data ?: return@launch
                     )
-                    Log.d(TAG, "user = ${user.name}")
                     viewModel.onSignInResult(signInResult, onLoginUser)
                 }
             }
@@ -114,6 +115,7 @@ fun ProfileScreen(
 
                 is ProfileState.Loading -> LoadingElement()
                 else -> NotLoggedInElement {
+                    if (isConnected){
 //----------------------------------- Google -----------------------------------\\
                     scope.launch {
                         val signInIntentSender = googleAuthUiClient.signIn()
@@ -124,6 +126,9 @@ fun ProfileScreen(
                         )
                     }
 //----------------------------------- Google -----------------------------------//
+                     } else {
+                        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         }

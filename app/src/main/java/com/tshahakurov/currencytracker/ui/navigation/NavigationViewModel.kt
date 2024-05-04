@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
-import com.tshahakurov.currencytracker.app.TAG
 import com.tshahakurov.currencytracker.data.model.CustomCurrency
 import com.tshahakurov.currencytracker.data.model.UserData
 import com.tshahakurov.currencytracker.data.repository.SharedPreferencesRepository
@@ -30,18 +29,13 @@ class NavigationViewModel @Inject constructor(
             if (Firebase.auth.currentUser != null) {
                 currentUser.value =
                     userRepository.getUserByEmail(Firebase.auth.toUserData().email)!!
-                Log.d(TAG, "There is firebase user")
             } else {
                 if (userRepository.getUserByEmail(UserData.defaultUser.email) == null) {
                     userRepository.insertUser(UserData.defaultUser)
-                } else {
-                    Log.d(TAG, "User already exists")
                 }
                 currentUser.value = userRepository.getUserByEmail(UserData.defaultUser.email)
                     ?: UserData.defaultUser
             }
-
-            Log.d(TAG, "currentUser = ${currentUser.value.name}")
         }
     }
 
