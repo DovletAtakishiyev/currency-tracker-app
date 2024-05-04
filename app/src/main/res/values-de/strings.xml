@@ -32,6 +32,7 @@
     <string name="n_a">nicht verfügbar</string>
 
     <string name="no_connection">Bitte verbinden Sie sich mit dem Internet</string>
+    <string name="no_data">Keine verfügbaren Kurse. Bitte aktualisieren!</string>
 
     <string name="share_message">Hallo, schau dir mein Projekt an: https://github.com/DovletAtakishiyev/currency-tracker-app</string>
     <string name="feedback_body">Willkommen im Bereich "Feedback und Support"!\n\nWir schätzen Ihr Feedback und möchten unsere Anwendung verbessern, um Ihren Bedürfnissen noch besser gerecht zu werden. Wenn Sie Fragen, Feedback oder Probleme haben, teilen Sie uns dies bitte mit. Wir sind bereit, Ihnen zuzuhören und Ihnen zu helfen!\n\nUm Ihr Feedback oder Ihren Support-Antrag einzureichen, füllen Sie bitte das folgende Formular aus:\n\n1. Ihr Name:\n2. E-Mail-Adresse:\n3. Betreff (kurze Beschreibung Ihrer Frage oder Ihres Feedbacks):\n4. Nachricht (bitte geben Sie detaillierte Informationen zu Ihrer Frage, Ihrem Problem oder Ihrem Vorschlag an):\n\nWir werden uns bemühen, Ihnen so schnell wie möglich zu antworten und eine Lösung oder Klarstellung bereitzustellen. Vielen Dank für Ihre Teilnahme und Hilfe bei der Verbesserung unserer Anwendung.\n\nMit freundlichen Grüßen,\n[Your App Name] Support-Team</string>

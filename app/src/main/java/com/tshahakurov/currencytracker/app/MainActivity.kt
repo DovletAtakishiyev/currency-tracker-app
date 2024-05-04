@@ -1,9 +1,10 @@
 package com.tshahakurov.currencytracker.app
 
+import android.annotation.SuppressLint
 import android.content.IntentFilter
+import android.content.pm.ActivityInfo
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,10 +27,35 @@ import java.util.concurrent.TimeUnit
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // --- --- --- --- --- Work Manager  --- --- --- --- --- //
+        createWorker()
+
+        // --- --- --- --- --- Network Receiver  --- --- --- --- --- //
+        registerReceiver(
+            NetworkReceiver,
+            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        )
+
+        // --- --- --- --- --- Screen Layout  --- --- --- --- --- //
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        setContent {
+            CurrencyTrackerTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background,
+                ) {
+                    CurrencyApp()
+                }
+
+            }
+        }
+    }
+
+    private fun createWorker(){
         val workManager = WorkManager.getInstance(applicationContext)
         val uniqueWorkName = DailyTaskWorker.uniqueWorkName
         val workInfoListenableFuture = workManager.getWorkInfosForUniqueWork(uniqueWorkName)
@@ -49,24 +75,5 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }, ContextCompat.getMainExecutor(applicationContext))
-        // --- --- --- --- --- Work Manager  --- --- --- --- --- //
-
-        // --- --- --- --- --- Network Receiver  --- --- --- --- --- //
-        registerReceiver(
-            NetworkReceiver,
-            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-        )
-        // --- --- --- --- --- Network Receiver  --- --- --- --- --- //
-        setContent {
-            CurrencyTrackerTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background,
-                ) {
-                    CurrencyApp()
-                }
-
-            }
-        }
     }
 }

@@ -40,7 +40,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tshahakurov.currencytracker.R
 import com.tshahakurov.currencytracker.data.model.UserData
-import com.tshahakurov.currencytracker.ui.screen.profile.ProfileState
+import com.tshahakurov.currencytracker.ui.screen.profile.ScreenState
 import com.tshahakurov.currencytracker.ui.theme.DP_1
 import com.tshahakurov.currencytracker.ui.theme.DP_100
 import com.tshahakurov.currencytracker.ui.theme.DP_20
@@ -52,7 +52,7 @@ import com.tshahakurov.currencytracker.util.toUserData
 
 @Composable
 fun MenuElement(
-    state: ProfileState,
+    state: ScreenState,
     onSettingsClicked: () -> Unit = {},
     onProfileClicked: () -> Unit = {},
 ) {
@@ -215,14 +215,14 @@ fun MenuItem(
 @Composable
 fun ProfileElement(
     user: UserData?,
-    state: ProfileState,
+    state: ScreenState,
     onClick: () -> Unit
 ) {
     Column(
         modifier = Modifier.clickable { onClick() },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        if (state == ProfileState.LoggedIn) {
+        if (state == ScreenState.LoggedIn) {
             AsyncImage(
                 model = user?.imageUri,
                 modifier = Modifier

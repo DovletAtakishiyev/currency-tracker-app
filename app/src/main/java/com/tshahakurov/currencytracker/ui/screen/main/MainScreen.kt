@@ -71,7 +71,7 @@ fun MainScreen(
     onAddCurrencyClicked: () -> Unit = {},
     onProfileClicked: () -> Unit = {},
 ) {
-    val state by viewModel.profileState.collectAsState()
+    val state by viewModel.screenState.collectAsState()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     viewModel.checkLogin(user)

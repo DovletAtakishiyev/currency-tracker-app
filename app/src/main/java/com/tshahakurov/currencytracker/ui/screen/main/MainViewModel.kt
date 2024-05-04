@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.tshahakurov.currencytracker.data.model.CustomCurrency
 import com.tshahakurov.currencytracker.data.model.UserData
 import com.tshahakurov.currencytracker.data.repository.UserRepository
-import com.tshahakurov.currencytracker.ui.screen.profile.ProfileState
+import com.tshahakurov.currencytracker.ui.screen.profile.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,14 +17,14 @@ class MainViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    val profileState = MutableStateFlow<ProfileState>(ProfileState.NotLoggedIn)
+    val screenState = MutableStateFlow<ScreenState>(ScreenState.NotLoggedIn)
 
     fun checkLogin(user: UserData) {
         viewModelScope.launch(Dispatchers.IO) {
             if (userRepository.getUserByEmail(user.email)?.email != UserData.defaultUser.email)
-                profileState.value = ProfileState.LoggedIn
+                screenState.value = ScreenState.LoggedIn
             else
-                profileState.value = ProfileState.NotLoggedIn
+                screenState.value = ScreenState.NotLoggedIn
         }
     }
 

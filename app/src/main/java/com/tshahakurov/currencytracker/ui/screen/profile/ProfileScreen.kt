@@ -1,7 +1,6 @@
 package com.tshahakurov.currencytracker.ui.screen.profile
 
 import android.app.Activity.RESULT_OK
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.IntentSenderRequest
@@ -57,7 +56,7 @@ fun ProfileScreen(
     onLoginUser: (user:UserData) -> Unit = {},
     onRemoveUser: () -> Unit = {},
 ) {
-    val state by viewModel.profileState.collectAsState()
+    val state by viewModel.screenState.collectAsState()
     val isConnected by viewModel.isNetworkConnected.collectAsState(initial = false)
     val message = stringResource(id = R.string.no_connection)
     viewModel.startObservingNetworkState()
@@ -100,7 +99,7 @@ fun ProfileScreen(
             AppBar(CurrencyScreens.Profile, onBackPressed = onBackPressed)
             val msg = stringResource(R.string.sing_out)
             when (state) {
-                is ProfileState.LoggedIn -> LoggedInElement(Firebase.auth.toUserData()) {
+                is ScreenState.LoggedIn -> LoggedInElement(Firebase.auth.toUserData()) {
                     scope.launch {
                         googleAuthUiClient.signOut()
                         Toast.makeText(
@@ -113,7 +112,7 @@ fun ProfileScreen(
                     onRemoveUser()
                 }
 
-                is ProfileState.Loading -> LoadingElement()
+                is ScreenState.Loading -> LoadingElement()
                 else -> NotLoggedInElement {
                     if (isConnected){
 //----------------------------------- Google -----------------------------------\\

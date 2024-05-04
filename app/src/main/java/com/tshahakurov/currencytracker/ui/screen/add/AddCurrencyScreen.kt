@@ -15,10 +15,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.requiredWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -39,8 +41,10 @@ import com.tshahakurov.currencytracker.data.model.CustomCurrency
 import com.tshahakurov.currencytracker.data.model.UserData
 import com.tshahakurov.currencytracker.ui.navigation.AppBar
 import com.tshahakurov.currencytracker.ui.navigation.CurrencyScreens
+import com.tshahakurov.currencytracker.ui.screen.profile.ScreenState
 import com.tshahakurov.currencytracker.ui.theme.DP_1
 import com.tshahakurov.currencytracker.ui.theme.DP_10
+import com.tshahakurov.currencytracker.ui.theme.DP_100
 import com.tshahakurov.currencytracker.ui.theme.DP_16
 import com.tshahakurov.currencytracker.ui.theme.DP_30
 import com.tshahakurov.currencytracker.ui.theme.DP_4
@@ -58,10 +62,11 @@ fun AddCurrencyScreen(
     onCurrencyRemoved: (CustomCurrency) -> Unit = {},
 ) {
     val currencyList by viewModel.currencyList.collectAsState()
+    val isConnected by viewModel.isNetworkConnected.collectAsState(initial = false)
+    val screenState by viewModel.screenState.collectAsState(ScreenState.Empty)
+    val context = LocalContext.current
     viewModel.getSavedRates()
     viewModel.startObservingNetworkState()
-    val isConnected by viewModel.isNetworkConnected.collectAsState(initial = false)
-    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -76,35 +81,60 @@ fun AddCurrencyScreen(
                 onBackPressed = onBackPressed,
                 onUpdatedClicked = {
                     if (isConnected) {
+                        viewModel.screenState.value = ScreenState.Loading
                         viewModel.getLatestRates()
                     } else {
                         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                     }
                 }
             )
-            AddCurrencyScreenElements(user, currencyList, onCurrencyAdded, onCurrencyRemoved)
+            AddCurrencyScreenElements(
+                screenState,
+                user,
+                currencyList,
+                onCurrencyAdded,
+                onCurrencyRemoved
+            )
         }
     }
 }
 
 @Composable
 fun AddCurrencyScreenElements(
+    state: ScreenState,
     user: UserData,
     list: ArrayList<CustomCurrency>,
     onCurrencyAdded: (CustomCurrency) -> Unit,
     onCurrencyRemoved: (CustomCurrency) -> Unit,
 ) {
-    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        list.forEach { currency ->
-            AvailableCurrencyElement(
-                currency,
-                user.activeCurrencies.any { it.code == currency.code },
-                onCurrencyAdded,
-                onCurrencyRemoved
-            )
+    when (state) {
+        ScreenState.Empty -> Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = stringResource(id = R.string.no_data))
         }
-        Spacer(modifier = Modifier.requiredHeight(DP_64))
+        ScreenState.Loading ->  Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator(Modifier.size(DP_100))
+        }
+        else -> Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+            list.forEach { currency ->
+                AvailableCurrencyElement(
+                    currency,
+                    user.activeCurrencies.any { it.code == currency.code },
+                    onCurrencyAdded,
+                    onCurrencyRemoved
+                )
+            }
+            Spacer(modifier = Modifier.requiredHeight(DP_64))
+        }
     }
+
 }
 
 @Composable

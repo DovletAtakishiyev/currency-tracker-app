@@ -1,8 +1,5 @@
 package com.tshahakurov.currencytracker.ui.screen.profile
 
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tshahakurov.currencytracker.app.logic.auth.SignInResult
@@ -20,7 +17,7 @@ class ProfileViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    val profileState = MutableStateFlow<ProfileState>(ProfileState.NotLoggedIn)
+    val screenState = MutableStateFlow<ScreenState>(ScreenState.NotLoggedIn)
     val isNetworkConnected = MutableStateFlow(false)
 
     fun startObservingNetworkState() {
@@ -34,14 +31,14 @@ class ProfileViewModel @Inject constructor(
     fun checkLogin(user: UserData) {
         viewModelScope.launch(Dispatchers.IO) {
             if (userRepository.getUserByEmail(user.email)?.email != UserData.defaultUser.email) {
-                profileState.value = ProfileState.LoggedIn
+                screenState.value = ScreenState.LoggedIn
             } else
-                profileState.value = ProfileState.NotLoggedIn
+                screenState.value = ScreenState.NotLoggedIn
         }
     }
 
     fun loginOut() {
-        profileState.value = ProfileState.NotLoggedIn
+        screenState.value = ScreenState.NotLoggedIn
     }
 
     fun onSignInResult(result: SignInResult, onLoginUser: (UserData) -> Unit) {
@@ -52,15 +49,17 @@ class ProfileViewModel @Inject constructor(
                 if (dbUser == null)
                     userRepository.insertUser(user)
                 onLoginUser(userRepository.getUserByEmail(user.email)!!)
-                profileState.value = ProfileState.LoggedIn
+                screenState.value = ScreenState.LoggedIn
             } else
-                profileState.value = ProfileState.NotLoggedIn
+                screenState.value = ScreenState.NotLoggedIn
         }
     }
 }
 
-sealed class ProfileState {
-    data object LoggedIn : ProfileState()
-    data object NotLoggedIn : ProfileState()
-    data object Loading : ProfileState()
+sealed class ScreenState {
+    data object LoggedIn : ScreenState()
+    data object NotLoggedIn : ScreenState()
+    data object Success : ScreenState()
+    data object Empty : ScreenState()
+    data object Loading : ScreenState()
 }
