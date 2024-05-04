@@ -2,7 +2,6 @@ package com.tshahakurov.currencytracker.ui.screen.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tshahakurov.currencytracker.data.model.CustomCurrency
 import com.tshahakurov.currencytracker.data.model.UserData
 import com.tshahakurov.currencytracker.data.repository.UserRepository
 import com.tshahakurov.currencytracker.ui.screen.profile.ScreenState
@@ -25,15 +24,6 @@ class MainViewModel @Inject constructor(
                 screenState.value = ScreenState.LoggedIn
             else
                 screenState.value = ScreenState.NotLoggedIn
-        }
-    }
-
-    fun removeCurrency(user: UserData, currency: CustomCurrency) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val currencyToRemove = user.activeCurrencies.find { it.code == currency.code }
-            if (currencyToRemove != null) {
-                user.activeCurrencies.remove(currencyToRemove)
-            }
         }
     }
 }

@@ -4,7 +4,6 @@ package com.tshahakurov.currencytracker.app.logic.auth
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
-import android.util.Log
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -29,7 +28,6 @@ class GoogleAuthUiClient(
             ).await()
         } catch(e: Exception) {
             e.printStackTrace()
-//            Log.d(TAG, e.message ?: "error")
             if(e is CancellationException) throw e
             null
         }
@@ -70,14 +68,6 @@ class GoogleAuthUiClient(
             e.printStackTrace()
             if(e is CancellationException) throw e
         }
-    }
-
-    fun getSignedInUser(): UserData? = auth.currentUser?.run {
-        UserData(
-            name = displayName,
-            email = email ?: "no@email",
-            imageUri = photoUrl
-        )
     }
 
     private fun buildSignInRequest(): BeginSignInRequest {

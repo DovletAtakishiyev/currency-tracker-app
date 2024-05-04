@@ -45,7 +45,7 @@ import com.tshahakurov.currencytracker.data.model.CustomCurrency
 import com.tshahakurov.currencytracker.data.model.UserData
 import com.tshahakurov.currencytracker.ui.navigation.AppBar
 import com.tshahakurov.currencytracker.ui.navigation.CurrencyScreens
-import com.tshahakurov.currencytracker.ui.screen.NumberKeyboard
+import com.tshahakurov.currencytracker.ui.util.NumberKeyboard
 import com.tshahakurov.currencytracker.ui.theme.DP_1
 import com.tshahakurov.currencytracker.ui.theme.DP_10
 import com.tshahakurov.currencytracker.ui.theme.DP_14
@@ -57,7 +57,7 @@ import com.tshahakurov.currencytracker.ui.theme.DP_50
 import com.tshahakurov.currencytracker.ui.theme.DP_500
 import com.tshahakurov.currencytracker.ui.theme.DP_6
 import com.tshahakurov.currencytracker.ui.theme.DP_70
-import com.tshahakurov.currencytracker.util.dashedBorder
+import com.tshahakurov.currencytracker.ui.util.dashedBorder
 import kotlinx.coroutines.launch
 import java.lang.Math.round
 

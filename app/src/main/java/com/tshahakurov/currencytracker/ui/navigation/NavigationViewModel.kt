@@ -1,6 +1,5 @@
 package com.tshahakurov.currencytracker.ui.navigation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.Firebase
@@ -9,7 +8,7 @@ import com.tshahakurov.currencytracker.data.model.CustomCurrency
 import com.tshahakurov.currencytracker.data.model.UserData
 import com.tshahakurov.currencytracker.data.repository.SharedPreferencesRepository
 import com.tshahakurov.currencytracker.data.repository.UserRepository
-import com.tshahakurov.currencytracker.util.toUserData
+import com.tshahakurov.currencytracker.data.model.converter.toUserData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

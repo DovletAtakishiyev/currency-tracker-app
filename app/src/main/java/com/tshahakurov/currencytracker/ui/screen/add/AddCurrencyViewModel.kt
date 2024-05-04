@@ -1,6 +1,5 @@
 package com.tshahakurov.currencytracker.ui.screen.add
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tshahakurov.currencytracker.app.logic.network.NetworkReceiver

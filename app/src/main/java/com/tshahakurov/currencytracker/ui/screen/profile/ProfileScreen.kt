@@ -45,7 +45,7 @@ import com.tshahakurov.currencytracker.ui.theme.DP_100
 import com.tshahakurov.currencytracker.ui.theme.DP_150
 import com.tshahakurov.currencytracker.ui.theme.DP_20
 import com.tshahakurov.currencytracker.ui.theme.DP_4
-import com.tshahakurov.currencytracker.util.toUserData
+import com.tshahakurov.currencytracker.data.model.converter.toUserData
 import kotlinx.coroutines.launch
 
 @Composable

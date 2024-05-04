@@ -1,4 +1,4 @@
-package com.tshahakurov.currencytracker.util
+package com.tshahakurov.currencytracker.ui.util
 
 import androidx.compose.foundation.BorderStroke
 

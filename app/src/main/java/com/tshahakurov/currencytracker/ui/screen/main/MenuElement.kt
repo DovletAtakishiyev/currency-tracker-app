@@ -48,7 +48,7 @@ import com.tshahakurov.currencytracker.ui.theme.DP_4
 import com.tshahakurov.currencytracker.ui.theme.DP_40
 import com.tshahakurov.currencytracker.ui.theme.DP_50
 import com.tshahakurov.currencytracker.ui.theme.DP_8
-import com.tshahakurov.currencytracker.util.toUserData
+import com.tshahakurov.currencytracker.data.model.converter.toUserData
 
 @Composable
 fun MenuElement(

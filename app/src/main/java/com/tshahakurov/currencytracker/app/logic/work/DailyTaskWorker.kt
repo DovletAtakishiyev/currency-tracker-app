@@ -2,7 +2,6 @@ package com.tshahakurov.currencytracker.app.logic.work
 
 import android.content.Context
 import androidx.work.CoroutineWorker
-import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.tshahakurov.currencytracker.data.model.CustomCurrency
 import com.tshahakurov.currencytracker.data.model.converter.toCustomCurrencyArrayList

@@ -1,4 +1,4 @@
-package com.tshahakurov.currencytracker.util
+package com.tshahakurov.currencytracker.data.model.converter
 
 import com.google.firebase.auth.FirebaseAuth
 import com.tshahakurov.currencytracker.data.model.UserData

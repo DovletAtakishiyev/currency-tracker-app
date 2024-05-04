@@ -1,7 +1,6 @@
 package com.tshahakurov.currencytracker.ui.navigation
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.annotation.StringRes
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -30,6 +29,8 @@ enum class CurrencyScreens(@StringRes val route: Int) {
     Profile(R.string.profile),
 }
 
+private const val URI_PATTERN = "https://www.suita123.com"
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,9 +57,8 @@ fun CurrencyApp(
             // Main Screen
             composable(
                 route = CurrencyScreens.Main.name,
-                deepLinks = listOf(navDeepLink { uriPattern = "https://www.suita123.com/{id}" })
-            ) { backstackEntry ->
-                val id = backstackEntry.arguments?.getString("id")
+                deepLinks = listOf(navDeepLink { uriPattern = "${URI_PATTERN}/{id}" })
+            ) {
                 MainScreen(
                     currentUser,
                     onAddCurrencyClicked = {
@@ -74,7 +74,9 @@ fun CurrencyApp(
                 route = CurrencyScreens.Settings.name
             ) {
                 SettingsScreen(
-                    onBackPressed = { navController.popBackStack() }
+                    onBackPressed = {
+                        navController.popBackStack()
+                    }
                 )
             }
 
