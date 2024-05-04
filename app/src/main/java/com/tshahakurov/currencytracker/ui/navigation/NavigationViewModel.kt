@@ -8,6 +8,7 @@ import com.google.firebase.auth.auth
 import com.tshahakurov.currencytracker.app.TAG
 import com.tshahakurov.currencytracker.data.model.CustomCurrency
 import com.tshahakurov.currencytracker.data.model.UserData
+import com.tshahakurov.currencytracker.data.repository.SharedPreferencesRepository
 import com.tshahakurov.currencytracker.data.repository.UserRepository
 import com.tshahakurov.currencytracker.util.toUserData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +19,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NavigationViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val sharedPreferences: SharedPreferencesRepository
 ) : ViewModel() {
 
     val currentUser = MutableStateFlow(UserData("none", "none", null, arrayListOf()))
@@ -76,5 +78,7 @@ class NavigationViewModel @Inject constructor(
             userRepository.updateUser(currentUser.value)
         }
     }
+
+    fun getLocale() = sharedPreferences.getLanguage()
 }
 

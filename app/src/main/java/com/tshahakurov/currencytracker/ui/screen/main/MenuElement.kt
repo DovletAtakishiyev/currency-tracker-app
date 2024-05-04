@@ -1,5 +1,8 @@
 package com.tshahakurov.currencytracker.ui.screen.main
 
+import android.content.Intent
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -92,10 +95,22 @@ fun MenuElement(
                         title = stringResource(R.string.rate_google_play)
                     )
                     // --- --- --- --- Share --- --- --- --- //
+                    val shareActivityResultLauncher = rememberLauncherForActivityResult(
+                        contract = ActivityResultContracts.StartActivityForResult()
+                    ) { }
+                    val message = stringResource(id = R.string.share_message)
                     MenuItem(
                         icon = painterResource(R.drawable.ic_share),
                         title = stringResource(R.string.share)
-                    )
+                    ){
+                        val intent = Intent(Intent.ACTION_SEND)
+                        intent.type = "text/plain"
+                        intent.putExtra(Intent.EXTRA_TEXT, message)
+
+                        val chooserIntent = Intent.createChooser(intent, "Share message")
+
+                        shareActivityResultLauncher.launch(chooserIntent)
+                    }
                     // --- --- --- --- Feedback --- --- --- --- //
                     var showFeedbackDialog by remember { mutableStateOf(false) }
                     MenuItem(
@@ -107,6 +122,7 @@ fun MenuElement(
                     if (showFeedbackDialog)
                         CustomAlertDialog(
                             title = stringResource(R.string.feed_and_supp),
+                            body = stringResource(id = R.string.feedback_body),
                             onDismiss = { showFeedbackDialog = false }
                         )
 
@@ -121,6 +137,7 @@ fun MenuElement(
                     if (showPolicyDialog)
                         CustomAlertDialog(
                             title = stringResource(R.string.policy),
+                            body = stringResource(id = R.string.privacy_policy_body),
                             onDismiss = { showPolicyDialog = false }
                         )
                     // --- --- --- --- About --- --- --- --- //
@@ -134,6 +151,7 @@ fun MenuElement(
                     if (showAboutDialog)
                         CustomAlertDialog(
                             title = stringResource(R.string.about),
+                            body = stringResource(id = R.string.about_body),
                             onDismiss = { showAboutDialog = false }
                         )
                 }

@@ -1,23 +1,27 @@
 package com.tshahakurov.currencytracker.ui.navigation
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.annotation.StringRes
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navDeepLink
 import com.tshahakurov.currencytracker.R
 import com.tshahakurov.currencytracker.data.model.UserData
 import com.tshahakurov.currencytracker.ui.screen.add.AddCurrencyScreen
 import com.tshahakurov.currencytracker.ui.screen.main.MainScreen
 import com.tshahakurov.currencytracker.ui.screen.profile.ProfileScreen
 import com.tshahakurov.currencytracker.ui.screen.settings.SettingsScreen
+import java.util.Locale
 
 enum class CurrencyScreens(@StringRes val route: Int) {
     Main(R.string.main),
@@ -36,6 +40,14 @@ fun CurrencyApp(
     val currentUser by viewModel.currentUser.collectAsState()
     viewModel.getUser()
 
+    viewModel.getLocale()?.let {
+        Locale.setDefault(Locale(it))
+        val resources = LocalContext.current.resources
+        val configuration = resources.configuration
+        configuration.setLocale(Locale(it))
+        resources.updateConfiguration(configuration, resources.displayMetrics)
+    }
+
     Scaffold {
         NavHost(
             navController = navController,
@@ -43,8 +55,10 @@ fun CurrencyApp(
         ) {
             // Main Screen
             composable(
-                route = CurrencyScreens.Main.name
-            ) {
+                route = CurrencyScreens.Main.name,
+                deepLinks = listOf(navDeepLink { uriPattern = "https://www.suita123.com/{id}" })
+            ) { backstackEntry ->
+                val id = backstackEntry.arguments?.getString("id")
                 MainScreen(
                     currentUser,
                     onAddCurrencyClicked = {

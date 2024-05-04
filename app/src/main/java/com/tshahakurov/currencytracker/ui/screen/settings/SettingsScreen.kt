@@ -1,6 +1,7 @@
 package com.tshahakurov.currencytracker.ui.screen.settings
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -44,6 +45,7 @@ import com.tshahakurov.currencytracker.ui.theme.DP_50
 import com.tshahakurov.currencytracker.ui.theme.DP_60
 import com.tshahakurov.currencytracker.ui.theme.DP_8
 import java.util.Locale
+import kotlin.Pair as Pair1
 
 @Composable
 fun SettingsScreen(
@@ -71,30 +73,31 @@ fun SettingsScreen(
 
             // --- --- --- --- Language --- --- --- --- //
             var showLanguageDialog by remember { mutableStateOf(false) }
-            var languageValue by remember { mutableStateOf("English" to "eng") }
+            var languageValue by remember { mutableStateOf(viewModel.getLocaleFull()) }
             SettingsElement(
                 icon = painterResource(R.drawable.ic_language),
                 title = stringResource(R.string.language),
-                value = languageValue.first
+                value = languageValue,
+                isAvailable = true
             ) {
                 showLanguageDialog = true
             }
             if (showLanguageDialog)
                 LanguageDialog(
                     title = stringResource(R.string.language),
+                    languageList = viewModel.languageList,
                     onDismiss = {
-                        viewModel.saveChanges()
                         showLanguageDialog = false
                     },
                     onLanguageChosen = { newLanguage ->
-                        viewModel.saveChanges()
+                        viewModel.saveChanges(newLanguage.second)
                         val locale = Locale(newLanguage.second)
                         Locale.setDefault(locale)
                         val resources = context.resources
                         val configuration = resources.configuration
                         configuration.setLocale(locale)
                         resources.updateConfiguration(configuration, resources.displayMetrics)
-                        languageValue = newLanguage
+                        languageValue = newLanguage.first
                     }
                 )
 
@@ -118,8 +121,9 @@ fun SettingsScreen(
 @Composable
 fun LanguageDialog(
     title: String,
+    languageList: List<Pair1<String, String>>,
     onDismiss: () -> Unit = {},
-    onLanguageChosen: (Pair<String, String>) -> Unit = {}
+    onLanguageChosen: (Pair1<String, String>) -> Unit = {}
 ) {
     Dialog(onDismissRequest = onDismiss) {
         Surface(
@@ -134,8 +138,7 @@ fun LanguageDialog(
             ) {
                 Column {
                     Text(text = title, modifier = Modifier.padding(DP_8))
-                    val langList = listOf("English" to "eng", "Russian" to "ru")
-                    langList.forEach {
+                    languageList.forEach {
                         LanguageElement(it, onLanguageChosen)
                     }
                 }
@@ -147,7 +150,7 @@ fun LanguageDialog(
                     TextButton(
                         onClick = onDismiss,
                     ) {
-                        Text(text = stringResource(R.string.close))
+                        Text(text = stringResource(R.string.save))
                     }
                 }
             }
@@ -157,8 +160,8 @@ fun LanguageDialog(
 
 @Composable
 fun LanguageElement(
-    language: Pair<String, String>,
-    onClick: (Pair<String, String>) -> Unit = {}
+    language: Pair1<String, String>,
+    onClick: (Pair1<String, String>) -> Unit = {}
 ) {
     Box(
         modifier = Modifier
@@ -180,6 +183,7 @@ fun SettingsElement(
     icon: Painter,
     title: String,
     value: String,
+    isAvailable: Boolean = false,
     onClick: () -> Unit = {}
 ) {
     Box(
@@ -189,7 +193,14 @@ fun SettingsElement(
             .padding(horizontal = DP_10),
         contentAlignment = Alignment.CenterStart
     ) {
-        Column(modifier = Modifier.clickable { onClick() }) {
+        Column(
+            modifier = Modifier
+                .clickable { onClick() }
+                .background(
+                    if (isAvailable) Color.White
+                    else Color.LightGray
+                )
+        ) {
             Row(
                 modifier = Modifier
                     .padding(bottom = DP_10, end = DP_10)
@@ -199,7 +210,9 @@ fun SettingsElement(
                 Image(
                     painter = icon,
                     contentDescription = "",
-                    modifier = Modifier.size(DP_60).padding(end = DP_10)
+                    modifier = Modifier
+                        .size(DP_60)
+                        .padding(end = DP_10)
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),

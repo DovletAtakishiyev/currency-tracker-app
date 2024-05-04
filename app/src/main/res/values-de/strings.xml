@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main">Hauptmenü</string>
+    <string name="settings">Einstellungen</string>
+    <string name="add_currency">Währung hinzufügen</string>
+    <string name="profile">Profil</string>
+
+    <string name="add_new">Neu hinzufügen</string>
+    <string name="rate_google_play">Bewerten Sie im Google Play Store</string>
+    <string name="share">Teilen</string>
+    <string name="feed_and_supp">Feedback &amp; Unterstützung</string>
+    <string name="policy">Datenschutzrichtlinie</string>
+    <string name="about">Über uns</string>
+
+    <string name="title">Titel</string>
+    <string name="body">Inhalt</string>
+    <string name="close">Schließen</string>
+    <string name="save">Speichern</string>
+
+    <string name="hi_user">Hallo,</string>
+    <string name="please_login">Bitte hier einloggen</string>
+
+    <string name="theme">Design</string>
+    <string name="language">Sprache</string>
+    <string name="display_size">Anzeigegröße</string>
+    <string name="precision">Dezimalgenauigkeit</string>
+
+    <string name="sing_out">Abgemeldet</string>
+    <string name="log_out">ABMELDEN</string>
+    <string name="not_logged">Noch nicht angemeldet!</string>
+    <string name="google_login">Mit Google anmelden</string>
+    <string name="n_a">nicht verfügbar</string>
+
+    <string name="share_message">Hallo, schau dir mein Projekt an: https://github.com/DovletAtakishiyev/currency-tracker-app</string>
+    <string name="feedback_body">Willkommen im Bereich "Feedback und Support"!\n\nWir schätzen Ihr Feedback und möchten unsere Anwendung verbessern, um Ihren Bedürfnissen noch besser gerecht zu werden. Wenn Sie Fragen, Feedback oder Probleme haben, teilen Sie uns dies bitte mit. Wir sind bereit, Ihnen zuzuhören und Ihnen zu helfen!\n\nUm Ihr Feedback oder Ihren Support-Antrag einzureichen, füllen Sie bitte das folgende Formular aus:\n\n1. Ihr Name:\n2. E-Mail-Adresse:\n3. Betreff (kurze Beschreibung Ihrer Frage oder Ihres Feedbacks):\n4. Nachricht (bitte geben Sie detaillierte Informationen zu Ihrer Frage, Ihrem Problem oder Ihrem Vorschlag an):\n\nWir werden uns bemühen, Ihnen so schnell wie möglich zu antworten und eine Lösung oder Klarstellung bereitzustellen. Vielen Dank für Ihre Teilnahme und Hilfe bei der Verbesserung unserer Anwendung.\n\nMit freundlichen Grüßen,\n[Your App Name] Support-Team</string>
+    <string name="privacy_policy_body">Willkommen im Bereich "Feedback und Support"!\n\nWir schätzen Ihr Feedback und möchten unsere Anwendung verbessern, um Ihren Bedürfnissen noch besser gerecht zu werden. Wenn Sie Fragen, Feedback oder Probleme haben, teilen Sie uns dies bitte mit. Wir sind bereit, Ihnen zuzuhören und Ihnen zu helfen!\n\nUm Ihr Feedback oder Ihren Support-Antrag einzureichen, füllen Sie bitte das folgende Formular aus:\n\n1. Ihr Name:\n2. E-Mail-Adresse:\n3. Betreff (kurze Beschreibung Ihrer Frage oder Ihres Feedbacks):\n4. Nachricht (bitte geben Sie detaillierte Informationen zu Ihrer Frage, Ihrem Problem oder Ihrem Vorschlag an):\n\nWir werden uns bemühen, Ihnen so schnell wie möglich zu antworten und eine Lösung oder Klarstellung bereitzustellen. Vielen Dank für Ihre Teilnahme und Hilfe bei der Verbesserung unserer Anwendung.\n\nMit freundlichen Grüßen,\n[Your App Name] Support-Team</string>
+    <string name="about_body">Willkommen im Bereich "Feedback und Support"!\n\nWir schätzen Ihr Feedback und möchten unsere Anwendung verbessern, um Ihren Bedürfnissen noch besser gerecht zu werden. Wenn Sie Fragen, Feedback oder Probleme haben, teilen Sie uns dies bitte mit. Wir sind bereit, Ihnen zuzuhören und Ihnen zu helfen!\n\nUm Ihr Feedback oder Ihren Support-Antrag einzureichen, füllen Sie bitte das folgende Formular aus:\n\n1. Ihr Name:\n2. E-Mail-Adresse:\n3. Betreff (kurze Beschreibung Ihrer Frage oder Ihres Feedbacks):\n4. Nachricht (bitte geben Sie detaillierte Informationen zu Ihrer Frage, Ihrem Problem oder Ihrem Vorschlag an):\n\nWir werden uns bemühen, Ihnen so schnell wie möglich zu antworten und eine Lösung oder Klarstellung bereitzustellen. Vielen Dank für Ihre Teilnahme und Hilfe bei der Verbesserung unserer Anwendung.\n\nMit freundlichen Grüßen,\n[Your App Name] Support-Team</string>
+</resources>
