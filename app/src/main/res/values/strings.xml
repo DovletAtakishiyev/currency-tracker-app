@@ -1,3 +1,43 @@
 <resources>
-    <string name="app_name">Currency Tracker</string>
+    <string name="app_name" translatable="false">Currency Tracker</string>
+    <string name="web_client_id" translatable="false">996742951296-q1gc3ovvjgcr5gb681hjc1mh0aq8vedk.apps.googleusercontent.com</string>
+
+    <string name="main">Main</string>
+    <string name="settings">Settings</string>
+    <string name="add_currency">Add Currency</string>
+    <string name="profile">Profile</string>
+
+    <string name="add_new">Add new</string>
+    <string name="rate_google_play">Rate in Google Play</string>
+    <string name="share">Share</string>
+    <string name="feed_and_supp">Feedback &amp; Support</string>
+    <string name="policy">Privacy Policy</string>
+    <string name="about">About</string>
+
+    <string name="title">Title</string>
+    <string name="body">Body</string>
+    <string name="close">Close</string>
+    <string name="save">Save</string>
+
+    <string name="hi_user">Hello,</string>
+    <string name="please_login">Please login Here</string>
+
+    <string name="theme">Theme</string>
+    <string name="language">Language</string>
+    <string name="display_size">Display Size</string>
+    <string name="precision">Decimal Precision</string>
+
+    <string name="sing_out">Signed out</string>
+    <string name="log_out">LOG OUT</string>
+    <string name="not_logged">Not Logged in yet!</string>
+    <string name="google_login">Login using Google</string>
+    <string name="n_a">n/a</string>
+
+    <string name="no_connection">Please connect to the Internet</string>
+    <string name="no_data">No available rates. Please update!</string>
+
+    <string name="share_message">Hi there, check out my project: https://github.com/DovletAtakishiyev/currency-tracker-app</string>
+    <string name="feedback_body">Welcome to the "Feedback and Support" section!\n\nWe value your feedback and want to improve our application to better meet your needs. If you have any questions, feedback, or issues, please share them with us. We are ready to listen and assist you!\n\nTo submit your feedback or support request, please fill out the following form:\n\n1. Your Name:\n2. Email Address:\n3. Subject (brief description of your question or feedback):\n4. Message (please provide detailed information about your question, issue, or suggestion):\n\nWe will strive to respond to you as soon as possible and provide a resolution or clarification. Thank you for your participation and help in enhancing our application.\n\nBest regards,\n[Your App Name] Support Team</string>
+    <string name="privacy_policy_body">Welcome to the "Feedback and Support" section!\n\nWe value your feedback and want to improve our application to better meet your needs. If you have any questions, feedback, or issues, please share them with us. We are ready to listen and assist you!\n\nTo submit your feedback or support request, please fill out the following form:\n\n1. Your Name:\n2. Email Address:\n3. Subject (brief description of your question or feedback):\n4. Message (please provide detailed information about your question, issue, or suggestion):\n\nWe will strive to respond to you as soon as possible and provide a resolution or clarification. Thank you for your participation and help in enhancing our application.\n\nBest regards,\n[Your App Name] Support Team</string>
+    <string name="about_body">Welcome to the "Feedback and Support" section!\n\nWe value your feedback and want to improve our application to better meet your needs. If you have any questions, feedback, or issues, please share them with us. We are ready to listen and assist you!\n\nTo submit your feedback or support request, please fill out the following form:\n\n1. Your Name:\n2. Email Address:\n3. Subject (brief description of your question or feedback):\n4. Message (please provide detailed information about your question, issue, or suggestion):\n\nWe will strive to respond to you as soon as possible and provide a resolution or clarification. Thank you for your participation and help in enhancing our application.\n\nBest regards,\n[Your App Name] Support Team</string>
 </resources>
